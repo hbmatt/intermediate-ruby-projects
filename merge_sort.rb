@@ -1,7 +1,8 @@
 def merge_sort(array)
   return array if array.length < 2
-  left = merge_sort(array[0...array.length/2])
-  right = merge_sort(array[array.length/2..-1])
+
+  left = merge_sort(array[0...array.length / 2])
+  right = merge_sort(array[array.length / 2..-1])
   merged = []
 
   until left.empty? && right.empty?
@@ -16,5 +17,5 @@ def merge_sort(array)
     end
   end
 
-  return merged
+  merged
 end
