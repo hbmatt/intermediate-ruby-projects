@@ -8,3 +8,6 @@ Built a method that takes in an array and returns a sorted array, using recursio
 
 ## Linked_List
 Built two classes, LinkedList and Node, which can be used to implement linked lists in Ruby.
+
+## Binary_Search_Tree
+Builds a balanced binary search tree from an array of integers.
