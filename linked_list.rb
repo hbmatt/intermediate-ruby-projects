@@ -15,6 +15,8 @@ class LinkedList
       @tail.next_node = new_node
       @tail = new_node
     end
+
+    puts self
   end
 
   def prepend(value)
@@ -24,9 +26,13 @@ class LinkedList
     else
       @head = Node.new(value, @head)
     end
+
+    puts self
   end
 
   def insert_at(value, index)
+    return prepend(value) if index == 0
+
     current_index = 0
     current_node = @head
 
@@ -36,16 +42,27 @@ class LinkedList
     end
 
     left_node = current_node
+
+    return append(value) if left_node.next_node == @tail
+
     current_node = left_node.next_node
     right_node = current_node
 
     current_node = Node.new(value, right_node)
     left_node.next_node = current_node
+
+    puts self
   end
 
   def remove_at(index)
     current_index = 0
     current_node = @head
+
+    if index == 0
+      @head = current_node.next_node
+      current_node = nil
+      return puts self
+    end
 
     until current_index == index - 1
       current_node = current_node.next_node
@@ -55,7 +72,7 @@ class LinkedList
     left_node = current_node
 
     if left_node.next_node == @tail
-      pop
+      return pop
     else
       current_node = current_node.next_node
       right_node = current_node.next_node
@@ -63,6 +80,8 @@ class LinkedList
       current_node = nil
       left_node.next_node = right_node
     end
+
+    puts self
   end
 
   def size
@@ -88,6 +107,8 @@ class LinkedList
       current_node = current_node.next_node
     end
 
+    return nil if current_node.nil?
+
     current_node.value
   end
 
@@ -103,6 +124,8 @@ class LinkedList
       @tail = current_node
       current_node.next_node = nil
     end
+
+    puts self
   end
 
   def find(value)
