@@ -5,3 +5,6 @@ Created two methods, one using iteration and the other using recursion, which ta
 
 ## Merge_Sort
 Built a method that takes in an array and returns a sorted array, using recursion.
+
+## Linked_List
+Built two classes, LinkedList and Node, which can be used to implement linked lists in Ruby.
