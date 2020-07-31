@@ -53,9 +53,7 @@ class Tree
       current_node = value < current_node.value ? current_node.left : current_node.right
     end
 
-    if current_node.left.nil? && current_node.right.nil?
-      current_node.value < parent_node.value ? parent_node.left = nil : parent_node.right = nil
-    elsif current_node.left && current_node.right
+    if current_node.left && current_node.right
       if current_node.value < parent_node.value
         replacement = current_node.left
         replacement.right = current_node.right
@@ -66,7 +64,7 @@ class Tree
         parent_node.right = replacement
       end
     else
-      replacement = current_node.left || current_node.right
+      replacement = current_node.left || current_node.right || nil
       current_node.value < parent_node.value ? parent_node.left = replacement : parent_node.right = replacement
     end
 
@@ -135,7 +133,6 @@ class Tree
     right_depth = node.right.nil? ? 0 : (1 + depth(node.right))
 
     depth = left_depth > right_depth ? left_depth : right_depth
-
   end
 
   def balanced?
@@ -145,17 +142,22 @@ class Tree
   end
 
   def rebalance
-    array = level_order()
+    array = level_order
     @root = build_tree(array)
   end
 end
 
+puts 'Creating new tree.'
 test_tree = Tree.new(Array.new(15) { rand(1..100) })
-puts test_tree.balanced?
+puts "Tree balanced? #{test_tree.balanced?}\n\n"
 
+puts 'Level Order:'
 p test_tree.level_order
+puts 'Preorder:'
 p test_tree.preorder
+puts 'Postorder:'
 p test_tree.postorder
+puts 'Inorder:'
 p test_tree.inorder
 
 test_tree.insert(500)
@@ -164,11 +166,16 @@ test_tree.insert(300)
 test_tree.insert(250)
 test_tree.insert(450)
 
-puts test_tree.balanced?
+puts "\nTree balanced? #{test_tree.balanced?}"
+puts 'Rebalancing tree.'
 test_tree.rebalance
-puts test_tree.balanced?
+puts "Tree balanced? #{test_tree.balanced?}\n\n"
 
+puts 'Level Order:'
 p test_tree.level_order
+puts 'Preorder:'
 p test_tree.preorder
+puts 'Postorder:'
 p test_tree.postorder
+puts 'Inorder:'
 p test_tree.inorder
